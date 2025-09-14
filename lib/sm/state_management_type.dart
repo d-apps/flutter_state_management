@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_state_management/sm/cubit/cubit_main.dart';
-import 'package:flutter_state_management/sm/riverpod/riverpod_main.dart';
 
-import 'flutter_bloc/flutter_bloc_main.dart';
+import 'cubit/cubit_view.dart';
+import 'flutter_bloc/flutter_bloc_view.dart';
+import 'riverpod/random_joke_generator/riverpod_view.dart';
 
 enum StateManagementType {
   flutterBloc,
@@ -12,14 +12,14 @@ enum StateManagementType {
   mobx,
   getx;
 
-  Widget getMain() {
+  Widget widget() {
     switch (this) {
       case StateManagementType.flutterBloc:
-        return flutterBlocMain();
+        return FlutterBlocView();
       case StateManagementType.riverpod:
-        return riverpodMain();
+        return RiverpodView();
       case StateManagementType.cubit:
-        return cubitMain();
+        return CubitView();
       case StateManagementType.provider:
         return const Placeholder();
       case StateManagementType.mobx:
@@ -28,4 +28,22 @@ enum StateManagementType {
         return const Placeholder();
     }
   }
+
+  Color color(){
+    switch (this) {
+      case StateManagementType.flutterBloc:
+        return Colors.blue;
+      case StateManagementType.riverpod:
+        return Colors.green;
+      case StateManagementType.cubit:
+        return Colors.orange;
+      case StateManagementType.provider:
+        return Colors.purple;
+      case StateManagementType.mobx:
+        return Colors.red;
+      case StateManagementType.getx:
+        return Colors.teal;
+    }
+  }
+
 }
